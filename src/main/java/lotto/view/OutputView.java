@@ -7,9 +7,9 @@ import java.util.List;
 
 public class OutputView {
 
-    public void printLottoList(List<Lotto> lottos) {
+    public void printLottoList(List<Lotto> lottos, int manualCount) {
 
-        System.out.println(lottos.size() + "개를 구매했습니다.");
+        System.out.println("수동으로 " + manualCount + "장, 자동으로 " + (lottos.size() - manualCount) + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto.buildLottoString());
         }

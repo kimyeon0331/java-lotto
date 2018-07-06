@@ -16,7 +16,7 @@ public class LottoNoTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void createLottoNoTest() {
-        LottoNo lottoNo = new LottoNo(46);
+        LottoNo lottoNo = LottoNo.valueOf(46);
     }
 
     @Test

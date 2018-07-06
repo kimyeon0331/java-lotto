@@ -16,9 +16,7 @@ public class LottoNo {
         }
     }
 
-    public LottoNo(int number) {
-        if (!isBoundary(number))
-            throw new IllegalArgumentException();
+    private LottoNo(int number) {
         this.number = number;
 
     }
@@ -29,8 +27,14 @@ public class LottoNo {
         return false;
     }
 
-    public static LottoNo valueOf(int i) {
-        return lottoNoPool.get(i);
+    public static LottoNo valueOf(int number) {
+        if (!isBoundary(number))
+            throw new IllegalArgumentException();
+        return lottoNoPool.get(number);
+    }
+
+    public static LottoNo valueOf(String text) {
+        return valueOf(Integer.parseInt(text));
     }
 
     public int getNumber() {

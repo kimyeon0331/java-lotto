@@ -5,34 +5,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoGame {
-    private static final int LOTTO_COST = 1000;
+    public static final int LOTTO_COST = 1000;
 
     private final LottoShuffle shuffle;
     private Lotto winLotto;
+    private List<GenerateLotto> generateLottos;
 
-
-    public LottoGame() {
+    public  LottoGame(){
         this.shuffle = new LottoShuffle();
     }
+    public LottoGame(List<GenerateLotto> generateLottos) {
+        this.shuffle = new LottoShuffle();
+        this.generateLottos = generateLottos;
+    }
 
-    public List<Lotto> generate(int cost) {
-        if (cost < LOTTO_COST)
-            throw new IllegalArgumentException("1000원 이상의 값을 입력해주세요.");
-
-        int count = getLottoCount(cost);
-
+    public List<Lotto> generate() {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            lottos.add(shuffle.getLotto());
+        for (GenerateLotto generateLotto : generateLottos) {
+            lottos.addAll(generateLotto.generate());
         }
         return lottos;
     }
 
-    private int getLottoCount(int cost) {
-        return cost / LOTTO_COST;
-    }
 
-    public void setWinLotto(Lotto winLotto) {
+
+    public void setWinLotto(Lotto winLotto , int bonusNumber) {
         this.winLotto = winLotto;
     }
 

@@ -54,4 +54,22 @@ public class LottoGameTest {
         List<LottoState> winners = game.getWinners(testCase);
         assertEquals(2, winners.size());
     }
+
+    @Test
+    public void createLottoGame(){
+        List<Lotto> lottos = Arrays.asList(
+                Lotto.valueOf(1,2,3,4,5,6),
+                Lotto.valueOf(1,2,3,4,5,7),
+                Lotto.valueOf(1,2,3,4,5,8)
+        );
+        GenerateLotto autoGenerateLotto = new AutoGenerateLotto(5);
+        GenerateLotto manualGenerateLotto = new ManualGenerateLotto(lottos);
+
+        List<GenerateLotto> generateLottos = new ArrayList<>();
+        generateLottos.add(autoGenerateLotto);
+        generateLottos.add(manualGenerateLotto);
+
+        LottoGame lottoGame = new LottoGame(generateLottos);
+        assertEquals(8, lottoGame.generate().size());
+    }
 }

@@ -30,6 +30,15 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public static Lotto valueOf(String text) {
+        Set<LottoNo> numbers = new LinkedHashSet<>();
+        String[] values = text.split(", ");
+        for (String value : values) {
+            numbers.add(LottoNo.valueOf(value));
+        }
+        return new Lotto(numbers);
+    }
+
     public boolean isWinner(Lotto winLotto) {
         return LottoState.isWinner(getMatchCount(winLotto));
     }
